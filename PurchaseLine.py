@@ -1,11 +1,10 @@
 import pandas as pd
 import random
 
-# Load Product data
-products = pd.read_csv('product_data.csv')
+
 
 # Generate dummy data for Purchase Line table
-def generate_purchase_line_data(transaction_ids, lines_per_transaction):
+def generate_purchase_line_data(transaction_ids, lines_per_transaction,products):
     data = []
     purchase_line_id = 1  # Start with Purchase_Line_id 1
 
@@ -16,7 +15,7 @@ def generate_purchase_line_data(transaction_ids, lines_per_transaction):
             price = product['Product_price']
 
             # Determine a random quantity
-            quantity = random.randint(1, 3)  # Random quantity between 1 and 3
+            quantity = random.randint(1, 100)  # Random quantity between 1 and 3
             total_price = round(quantity * price, 2)  # Calculate total price for this line
 
             record = {
@@ -31,19 +30,26 @@ def generate_purchase_line_data(transaction_ids, lines_per_transaction):
 
     return data
 
-# Load transaction data to get Transaction IDs
-transactions = pd.read_csv('transaction_data.csv')
-transaction_ids = transactions['Transaction_id'].tolist()
 
-# Define how many purchase lines you want to create per transaction
-lines_per_transaction = 3  # For example, 3 purchase lines per transaction
+def main():
+    # Load Product data
+    products = pd.read_csv('product_data.csv')
+    # Load transaction data to get Transaction IDs
+    transactions = pd.read_csv('transaction_data.csv')
+    transaction_ids = transactions['Transaction_id'].tolist()
 
-# Generate purchase line data
-purchase_lines_data = generate_purchase_line_data(transaction_ids, lines_per_transaction)
-df_purchase_lines = pd.DataFrame(purchase_lines_data)
+    # Defines how many purchase lines you want to create per transaction
+    lines_per_transaction = 4  # For example, 3 purchase lines per transaction
 
-# Save DataFrame to CSV file
-csv_file_purchase_lines = 'purchase_line_data.csv'
-df_purchase_lines.to_csv(csv_file_purchase_lines, index=False)
+    # Generate purchase line data
+    purchase_lines_data = generate_purchase_line_data(transaction_ids, lines_per_transaction,products)
+    df_purchase_lines = pd.DataFrame(purchase_lines_data)
 
-print(f"Purchase line data saved to {csv_file_purchase_lines}")
+    # Save DataFrame to CSV file
+    csv_file_purchase_lines = 'purchase_line_data.csv'
+    df_purchase_lines.to_csv(csv_file_purchase_lines, index=False)
+
+    print(f"Purchase line data saved to {csv_file_purchase_lines}")
+
+if __name__ == "__main__":
+    main()

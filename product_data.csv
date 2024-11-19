@@ -1,0 +1,14 @@
+Product_id,Product_name,Product_price,Product_type
+0001,Gasoline,8.0,Fuel
+0002,Fuel Injector Cleaner,10.0,Fuel
+0003,Diesel,4.5,Fuel
+0004,Gas Premium,14.0,Fuel
+0005,Fuel Stabilizer,8.5,Fuel
+0006,Dyed Diesel,22.0,Fuel
+0007,Lottery Ticket,2.0,Non-Fuel
+0008,G-fuel,2.99,Fuel
+0009,Motor Oil,11.0,Fuel
+0010,Grocery Item,5.0,Non-Fuel
+0011,Cigarettes,10.0,Non-Fuel
+0012,Car Wash,5.0,Non-Fuel
+0013,Antifreeze,15.0,Fuel
